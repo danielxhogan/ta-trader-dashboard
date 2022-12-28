@@ -1,6 +1,6 @@
 # Rando-Trader
 
-[![IMAGE_ALT](ta-trader-dashboard.png)]
+![IMAGE_ALT](ta-trader-dashboard.png)
 
 There are three main parts to the TA Trader Dashboard. The first part is a series of python scripts that use a combination of web scraping and api requests to collect financial data and store it to a PostgreSQL database. The scripts are executed using cronjob and the database is updated periodically. The scripts look for news about stocks that can potentially cause a significant price shift such as earnings reports, news of mergers & acquisitions, publically reported insider trading, politician buys and sells, and new ratings. They look for news that breaks before market open or after market close. Then they takes the most significant news events and determine a sentiment score for the stock by taking all recent news articles about stock queried from the News api and sending them to the Google Cloud Language api. This helps determine if many people feel strongly about the stock.
 
