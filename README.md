@@ -1,4 +1,4 @@
-# Rando-Trader
+# TA Trader Dashboard
 
 ![IMAGE_ALT](ta-trader-dashboard.png)
 
