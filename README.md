@@ -1,16 +1,12 @@
 # Rando-Trader
 
-Rando-Trader is a full stack trading web app. There are three main parts:
+[![IMAGE_ALT](ta-trader-dashboard.png)]
 
-The first part is a series of python scripts that use a combination of web scraping and api requests to collect financial data and
-store it to a postgres db hosted on RDS. The scripts are executed on an ec2 instance using cronjob and the db is updated periodically.
+There are three main parts to the TA Trader Dashboard. The first part is a series of python scripts that use a combination of web scraping and api requests to collect financial data and store it to a PostgreSQL database. The scripts are executed using cronjob and the database is updated periodically. The scripts look for news about stocks that can potentially cause a significant price shift such as earnings reports, news of mergers & acquisitions, publically reported insider trading, politician buys and sells, and new ratings. They look for news that breaks before market open or after market close. Then they takes the most significant news events and determine a sentiment score for the stock by taking all recent news articles about stock queried from the News api and sending them to the Google Cloud Language api. This helps determine if many people feel strongly about the stock.
 
-The second part is a series of trading algorithms that retrieve universes of stocks and other relevant data from the db and place trades
-accordingly by connecting to the broker api. The broker I use is Alpaca.
+The second part of the TA Trader Dashboard are the trading bots. They are Python bots that connect to the Alpace Trade Api. Alpaca is a broker that provides a public api for account holders to perform actions on their account. the bots can get stock price data down to the minute, check current portfolio holdings, and place buy, sell, or close signals to open or close positions on stocks. Some of the bots use simple technical analysis while looping through universes of stocks looking for technical setups to indicate signals to open or close positions. Some of them use news data gathered by the data scripts. Some use a combination of both. They use the stocks detected by news sentiment to get the initial universe of stocks to trade, and then look for technical setups on those stocks to initiate a trade.
 
-The third part is the Rando-Trader dashboard which is a React/Express application hosted on Digital Ocean and accessible at randotrader.com.
-When the site is visited, data from the db is retrieved and displayed in the browser, and it also supports search functionality.  
-
+The last part of the TA Trader Dashboard is the frontend web app that displays data about the app. The Home page displays all the tables of data gathered in the database. The Search page allows the user to enter a stock ticker and search for data about that stock. The search feature uses many of the same methods as the data scripts. It will search the News Api, calcluate sentiment, search for any news of earnings reports, insider trading, ratings, or any other information that might be used make trading decisions about the stock.
 
 <br />
 <br />
